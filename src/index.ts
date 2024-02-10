@@ -25,6 +25,7 @@ export class RetellClientSdk {
         onConversationStarted: [],
         onConversationEnded: [],
         onError: [],
+        onAudioReceived: []
     };
 
     constructor() {
@@ -122,6 +123,8 @@ export class RetellClientSdk {
         this.liveClient!.on("audio", (audio: Uint8Array) => {
             const float32Data = convertUint8ToFloat32(audio);
             this.audioData.push(float32Data);
+            console.log("audio received")
+            this.triggerEvent("onAudioReceived", audio);
         });
 
         this.liveClient!.on("error", (error: string) => {
@@ -141,8 +144,14 @@ export class RetellClientSdk {
     }
 
     private triggerEvent(eventName: string, data?: any): void {
+        if (eventName === "onAudioReceived") {
+            console.log("onAudioReceived triggered")
+        }
         if (this.eventListeners[eventName]) {
-            this.eventListeners[eventName].forEach(listener => listener(data));
+            if (eventName === "onAudioReceived") {
+                console.log("got here")
+            }
+                this.eventListeners[eventName].forEach(listener => listener(data));
         }
     }
 }
