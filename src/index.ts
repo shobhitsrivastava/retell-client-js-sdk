@@ -15,7 +15,7 @@ export interface StartConversationConfig {
 }
 
 export class RetellWebClient extends EventEmitter {
-  private liveClient: AudioWsClient;
+  public liveClient: AudioWsClient;
   private audioContext: AudioContext;
   private isCalling: boolean = false;
   private stream: MediaStream;
@@ -39,6 +39,7 @@ export class RetellWebClient extends EventEmitter {
   public async startConversation(
     startConversationConfig: StartConversationConfig,
   ): Promise<void> {
+    console.log("hello from shobhit's code")
     try {
       await this.setupAudioPlayback(
         startConversationConfig.sampleRate,

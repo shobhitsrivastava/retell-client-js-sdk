@@ -18,5 +18,8 @@
   "dependencies": {
     "eventemitter3": "^5.0.1",
     "isomorphic-ws": "^5.0.0"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }

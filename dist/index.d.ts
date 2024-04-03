@@ -1,3 +1,4 @@
+import { AudioWsClient } from "./audioWsClient";
 import { EventEmitter } from "eventemitter3";
 export interface StartConversationConfig {
     callId: string;
@@ -6,7 +7,7 @@ export interface StartConversationConfig {
     enableUpdate?: boolean;
 }
 export declare class RetellWebClient extends EventEmitter {
-    private liveClient;
+    liveClient: AudioWsClient;
     private audioContext;
     private isCalling;
     private stream;
